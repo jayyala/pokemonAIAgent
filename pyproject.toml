@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "pokemon-red-agent"
+version = "0.1.0"
+description = "A reinforcement learning agent that learns to play Pokémon Red"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Jay Yala", email = "jay@example.com" }]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.23",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+emulator = ["pyboy>=1.5.2"]
+ml      = ["torch>=2.2", "gymnasium>=0.29"]
+logging = ["tensorboard>=2.14", "tqdm>=4.66"]
+dev     = ["pytest>=7.4", "ruff>=0.5.0", "mypy>=1.8"]
+all     = [
+    "pyboy>=1.5.2",
+    "torch>=2.2",
+    "gymnasium>=0.29",
+    "tensorboard>=2.14",
+    "tqdm>=4.66",
+    "pytest>=7.4",
+    "ruff>=0.5.0",
+    "mypy>=1.8",
+]
+
+[project.scripts]
+pokemon-agent = "pokemon_agent.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

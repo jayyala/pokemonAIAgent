@@ -1,0 +1,29 @@
+# DQN-specific hyper-parameters.
+# Inherits defaults from default.yaml; only overrides are listed here.
+
+agent:
+  obs_dim:       10
+  n_actions:     9
+  hidden_dim:    128
+  n_layers:      3
+  use_dueling:   true       # Dueling DQN (Wang et al., 2016)
+
+  # Exploration schedule
+  eps_start:     1.0
+  eps_end:       0.05
+  eps_decay:     200000     # steps until ε reaches eps_end
+
+  # Learning
+  lr:            0.0001
+  gamma:         0.99
+  batch_size:    64
+  warmup_steps:  5000
+  target_update: 1000       # gradient steps between target-net syncs
+
+  # Replay buffer
+  buffer_size:   100000
+
+train:
+  total_steps:    500000
+  save_interval:  50000
+  checkpoint_dir: checkpoints/dqn

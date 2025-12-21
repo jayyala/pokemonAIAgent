@@ -1,0 +1,31 @@
+# Default configuration for the Pokémon Red agent.
+# Override individual keys by passing a custom YAML file to --config.
+
+# ── Environment ────────────────────────────────────────────────────────────
+env:
+  max_steps: 20480         # steps per episode before truncation
+  frame_skip: 24           # Game Boy frames advanced per agent step
+
+# ── Reward Shaping ─────────────────────────────────────────────────────────
+reward:
+  hp_scale:             0.01
+  explore_scale:        0.02
+  badge_scale:          5.0
+  pokedex_seen_scale:   0.5
+  pokedex_owned_scale:  1.0
+  level_scale:          2.0
+  faint_penalty:       -5.0
+
+# ── Training ───────────────────────────────────────────────────────────────
+train:
+  total_steps:    500000
+  log_interval:   1000
+  eval_interval:  10000
+  save_interval:  50000
+  checkpoint_dir: checkpoints
+
+# ── Runtime ────────────────────────────────────────────────────────────────
+runtime:
+  device:      cpu           # "cpu" | "cuda" | "mps"
+  window:      false
+  seed:        42
